@@ -1,5 +1,7 @@
 package com.Selenium;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -29,6 +31,7 @@ public class MyFirstSeleniumProgram {
 		String TitleOfListPage = driver.getTitle();
 		System.out.println("TitleOfListPage:"+TitleOfListPage);
 		
+		//driver.findElement(By.linkText("Hiking Boots")).click();
 		
 		driver.findElement(By.name("bSubmt")).click();
 		}catch(Exception e) {
@@ -57,6 +60,15 @@ public class MyFirstSeleniumProgram {
 		System.out.println("TitleOfPlaceOrderPage:"+TitleOfPlaceOrderPage);
 		String TextOfUnitPriceFromApp = driver.findElement(By.xpath("//table[@border='1']/tbody/tr[2]/td[4]")).getText();
 		System.out.println("TextOfUnitPriceFromApp:"+TextOfUnitPriceFromApp);
+		String UnitPrice = TextOfUnitPriceFromApp.substring(2).trim();
+		System.out.println("UnitPrice:"+UnitPrice);
+		float CalculatedValue = Float.parseFloat(UnitPrice) * 3;
+		System.out.println("CalculatedValue:"+CalculatedValue);
+		String TotalPrineFromApp  = driver.findElement(By.xpath("//table[@border='1']/tbody/tr[2]/td[5]")).getText();
+		String TotalPrice = TotalPrineFromApp.substring(2).trim();
+		float Totalprice =Float.parseFloat(TotalPrice);
+		System.out.println("Totalprice:"+Totalprice);
+		//assert.assertEquals(CalculatedValue, Totalprice);
 	}
 
 }
