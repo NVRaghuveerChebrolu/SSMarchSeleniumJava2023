@@ -12,22 +12,22 @@ import org.testng.annotations.AfterSuite;
 
 public class TestNgAnnotations {
 	
-  @Test
+  @Test(priority=2)
   public void TestCase1() {
 	  System.out.println("inside TestCase1");
   }
   
-  @Test
+  @Test(priority=-3)
   public void TestCase2() {
 	  System.out.println("inside TestCase2");
   }
   
-  @Test
-  public void TestCase3() {
+  @Test()
+  public void testCase3() {
 	  System.out.println("inside TestCase3");
   }
   
-  @Test
+  @Test(priority=-6)
   public void TestCase4() {
 	  System.out.println("inside TestCase4");
   }
