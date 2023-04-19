@@ -2,11 +2,16 @@ package com.Selenium;
 
 import org.testng.annotations.Test;
 
+import com.utility.Library;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +22,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
-public class TestGmoOnlineUsingTestNg {
+public class TestGmoOnlineUsingTestNg extends Library{
 	WebDriver driver;
 
 	@Test(priority =-2)
@@ -84,6 +89,7 @@ public class TestGmoOnlineUsingTestNg {
 	@BeforeTest
 	public void beforeTest() {
 		System.out.println("inside beforeTest");
+		LaunchBrowser();
 	}
 
 	@AfterTest
@@ -94,9 +100,12 @@ public class TestGmoOnlineUsingTestNg {
 	@BeforeSuite
 	public void beforeSuite() {
 		System.out.println("inside beforeSuite");
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
+		try {
+			ReadPropertiesFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@AfterSuite
