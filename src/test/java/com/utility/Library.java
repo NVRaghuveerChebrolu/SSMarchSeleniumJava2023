@@ -59,11 +59,13 @@ public class Library {
 		}
 		driver.manage().window().maximize();
 		//implicit wait : Applicable for all WebElements
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 	}
 	
-	
+	public void PageLoadTimeOut() {
+		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+	}
 	
 
 }
