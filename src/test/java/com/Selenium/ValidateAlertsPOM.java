@@ -42,7 +42,8 @@ public class ValidateAlertsPOM extends Library{
 	public void ValidateNormalALert() throws InterruptedException {
 		System.out.println("inside ValidateNormalALert");
 		//driver.findElement(By.id("alertButton")).click();
-		AlertsPage.ClickNormaAlert();
+		AlertsPage obj = new AlertsPage(driver);
+		obj.ClickNormaAlert();
 		Alert NormalAlert = driver.switchTo().alert();
 		String TextOfNormalAlert = NormalAlert.getText();
 		System.out.println("TextOfNormalAlert:"+TextOfNormalAlert);
@@ -56,9 +57,10 @@ public class ValidateAlertsPOM extends Library{
 	public void ValidateTimerAlert() throws InterruptedException {
 		System.out.println("inside ValidateTimerAlert");
 		//driver.findElement(By.id("timerAlertButton")).click();
-		AlertsPage.ClickTimerAlert();
+		AlertsPage obj = new AlertsPage(driver);
+		obj.ClickTimerAlert();
 		//Explicit Wait : Explicit Wait available in Selenium which is Applicable for one WebElement . Wait until expected Condition 
-		//is satisfied
+		//is satisfied for maximum duration of time specified.
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		wait.until(ExpectedConditions.alertIsPresent());
 		

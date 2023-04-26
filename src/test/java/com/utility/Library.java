@@ -58,7 +58,9 @@ public class Library {
 			break;	
 		}
 		driver.manage().window().maximize();
-		//implicit wait : Applicable for all WebElements
+		//implicit wait :
+		//It is a global waiting mechanism application for all web Elements . This is the maximum duration that the script will wait to recognize the web element.
+		//if the webElement is identified in 3 seconds (for example) it will not wait for remaining 27 seconds .
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 	}
