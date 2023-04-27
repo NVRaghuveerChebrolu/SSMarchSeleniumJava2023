@@ -20,6 +20,16 @@ public class MouseOperationsPOM {
 	@FindBy(xpath = "//span[text()='Delete']")
 	public WebElement DeleteOption;
 	
+	@FindBy(xpath = "//iframe")
+	public WebElement Frame;
 	
+	@FindBy(xpath="//span[contains(text(),'Double click')]/preceding-sibling::div")
+	public WebElement DoubleClickBox;
+	
+	@FindBy(id = "draggable")
+	public WebElement draggable;
+	
+	@FindBy(id="droppable")
+	public WebElement droppable;
 
 }

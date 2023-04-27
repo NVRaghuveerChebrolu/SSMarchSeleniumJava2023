@@ -8,10 +8,12 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -69,5 +71,13 @@ public class Library {
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 	}
 	
-
+	public void DoubleClick(WebElement element) {
+		Actions objAction = new Actions(driver);
+		objAction.doubleClick(element).build().perform();
+	}
+	
+	public void RightClick(WebElement element) {
+		Actions objAction = new Actions(driver);
+		objAction.contextClick(element).build().perform();
+	}
 }
