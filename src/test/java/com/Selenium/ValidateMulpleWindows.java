@@ -19,6 +19,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
@@ -41,14 +43,29 @@ public class ValidateMulpleWindows extends Library {
 			driver.switchTo().window(IndividualWindow);
 			String title = driver.getTitle();
 			System.out.println("Title:"+title);
+			String URL = driver.getCurrentUrl();
+			System.out.println("URL:"+URL);
 			if(title.equalsIgnoreCase(objProperties.getProperty("newBrowserWindowTitle"))) {
-				driver.findElement(MultipleWindowsPage.menuOfNewBrowserWindow).click();
+				WebElement element = driver.findElement(MultipleWindowsPage.menuOfNewBrowserWindow);
+				WebDriverWait wait = new WebDriverWait(driver,60);
+				wait.until(ExpectedConditions.elementToBeClickable(element));
+				element.click();
 				JavascriptExecutor js = (JavascriptExecutor)driver;
-				js.executeScript("window.scrllBy(0,300)");
+				js.executeScript("window.scrollBy(0,300)");
 				driver.findElement(MultipleWindowsPage.AboutMeInNewBrowserWindow).click();
+				String TextOfTeckTalk = driver.findElement(MultipleWindowsPage.TechTalkInNewBrowserWindow).getText();
+				Assert.assertEquals(TextOfTeckTalk, objProperties.getProperty("TechTalkInNewBrowserWindow"));
+				String TechTalkURL = driver.findElement(MultipleWindowsPage.TechTalkInNewBrowserWindow).getAttribute("href");
+				Assert.assertEquals(TechTalkURL, objProperties.getProperty("UrlOfTechTalkInNewBrowserWindow"));
+				driver.close(); // closes the currently window that is currently open (where driver is currently Active)
+				driver.quit();//quit will closes all the windows that are open and operating by webDriver.
+				//break;
 			}
 		}
-		
+		driver.switchTo().window(ParentWindow);
+		String titleOfMainWindow = driver.getTitle();
+		Assert.assertEquals(titleOfMainWindow,objProperties.getProperty("nxtgenaiacademyTitle") );
+		driver.close();
 		
 	}
 
