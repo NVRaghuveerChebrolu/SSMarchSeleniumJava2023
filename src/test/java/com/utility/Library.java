@@ -10,10 +10,12 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -43,8 +45,14 @@ public class Library {
 		System.out.println("browerName:"+browerName);
 		switch(browerName.toLowerCase()) {
 		case "chrome":
-			WebDriverManager.chromedriver().setup();;
-			driver = new ChromeDriver();
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			File objFile = new File (System.getProperty("user.dir")+"//src//test//resources//addBlocker//extension_5_6_0_0.crx");
+			options.addExtensions(objFile);
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+			options.merge(capabilities);
+			driver = new ChromeDriver(options);
 			break;
 		case "edge":
 			WebDriverManager.edgedriver().setup();;
