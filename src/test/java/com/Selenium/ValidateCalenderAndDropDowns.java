@@ -11,6 +11,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -31,7 +32,7 @@ public class ValidateCalenderAndDropDowns extends Library {
 	
 	
 	@Test
-	public void ValidateDropDown() throws InterruptedException {
+	public void ValidateDropDownAndCalender() throws InterruptedException {
 		driver.get(objProperties.getProperty("Calender"));
 		PageLoadTimeOut();
 		Thread.sleep(15000);
@@ -51,8 +52,15 @@ public class ValidateCalenderAndDropDowns extends Library {
 				Select ObjSelectYear = new Select(obj.DOB_Year);
 				ObjSelectYear.selectByValue(objProperties.getProperty("YearOfCalender"));
 				
-				
-				
+				List<WebElement> AllDays = obj.DOB_Day;
+				for(int i=0 ;i <=AllDays.size()-1;i++) {
+					String IndividualDay = AllDays.get(i).getText();
+					System.out.println("IndividualDay:"+IndividualDay);
+					if(IndividualDay.equalsIgnoreCase(objProperties.getProperty("DayOfCalender"))) {
+						AllDays.get(i).click();
+						break;
+					}
+				}
 				break;
 			}
 		}

@@ -1,5 +1,7 @@
 package com.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +24,9 @@ public class CalenderAndDropDownPage {
 	
 	@FindBy(xpath="//select[@class='react-datepicker__year-select']")
 	public WebElement DOB_Year;
+	
+	@FindBy(xpath="//div[@role='listbox']/div/div")
+	public List<WebElement> DOB_Day;
 	
 	public void ClickOndateOfBirthInput() {
 		DOBinput.click();
