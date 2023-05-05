@@ -5,7 +5,7 @@ public class JavaVariables {
 	static int b=9; // static variables declared with help of static keyword
 	boolean flag =true;
 	//local variables : variables declared inside a method is called as local variables
-	 int add(int i, int j) {     
+	public int add(int i, int j) {     
 		//System.out.println(i+j);
 		return i+j;
 	}
