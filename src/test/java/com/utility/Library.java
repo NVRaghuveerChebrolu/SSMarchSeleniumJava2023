@@ -79,6 +79,11 @@ public class Library {
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 	}
 	
+	public void PageLoadTimeOut(int timoutDuration) {
+		driver.manage().timeouts().pageLoadTimeout(timoutDuration, TimeUnit.SECONDS);
+	}
+	
+	
 	public void DoubleClick(WebElement element) {
 		Actions objAction = new Actions(driver);
 		objAction.doubleClick(element).build().perform();

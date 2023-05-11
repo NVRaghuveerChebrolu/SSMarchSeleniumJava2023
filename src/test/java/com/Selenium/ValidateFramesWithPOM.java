@@ -32,8 +32,10 @@ public class ValidateFramesWithPOM extends Library {
   }
   
   @Test(priority=1)
-  public void ValidateSingleFrame() {
-	  driver.switchTo().frame(FramesPage.singleFrame);
+  public void ValidateSingleFrame() { 
+	  FramesPage obj = new FramesPage();
+	  obj.SetSingleFrame("singleframe");
+	  driver.switchTo().frame(obj.getSingleFrame());
 	  driver.findElement(FramesPage.TextBox).sendKeys(objProperties.getProperty("SingleFrameText"));
 	  driver.switchTo().defaultContent();
 	  driver.findElement(FramesPage.FrameWithInFramebutton).click();

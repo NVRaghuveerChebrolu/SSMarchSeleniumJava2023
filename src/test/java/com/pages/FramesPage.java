@@ -7,12 +7,22 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class FramesPage {
-	
-	public static final String singleFrame = "singleframe";
+
+	//using Encapsulation
+	private String singleFrame ;
 	public static final By TextBox = By.xpath("//input[@type='text']");
-	public static final By FrameWithInFramebutton= By.xpath("//a[contains(text(),'with in an')]");
+	public static final By FrameWithInFramebutton = By.xpath("//a[contains(text(),'with in an')]");
 	public static final By OuterFrame = By.xpath("//iframe[@src='MultipleFrames.html']");
 	public static final By InnerFrame = By.xpath("//iframe[@src='SingleFrame.html']");
-	
-	
+
+	//getter method
+	public String getSingleFrame() {
+		return singleFrame;
+	}
+
+	//setter method
+	public void SetSingleFrame(String singleFrame) {
+		this.singleFrame = singleFrame;
+		
+	}
 }

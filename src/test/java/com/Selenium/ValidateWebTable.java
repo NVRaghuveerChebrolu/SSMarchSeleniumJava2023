@@ -30,12 +30,14 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
+//using single inheritance 
 public class ValidateWebTable extends Library {
 	
 	@Test
 	public void ValidateWebTable() {
 		System.out.println("inside ValidateWebTable");
 		driver.get(objProperties.getProperty("WebTableURL"));
+		//using over riding which is also called as Run Time Polymorphism
 		PageLoadTimeOut();
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		//js.executeScript("window.scrollBy(0,600)");
@@ -62,6 +64,11 @@ public class ValidateWebTable extends Library {
 			}
 		}
 		
+	}
+
+	@Override
+	public void PageLoadTimeOut() {
+		driver.manage().timeouts().pageLoadTimeout(90, TimeUnit.SECONDS);
 	}
 
 	@BeforeMethod

@@ -30,6 +30,7 @@ public class ValidateMouseOperations extends Library {
 	public void ValidateRightCickOperation() {
 		System.out.println("inside ValidateRightCickOperation");
 		driver.get(objProperties.getProperty("mouseOpeartionRightClick"));
+		//overriding the PageLoadTimeOut
 		PageLoadTimeOut();
 		Actions objActions = new Actions(driver);
 		MouseOperationsPOM objMoueOperations = new MouseOperationsPOM(driver);
@@ -45,7 +46,8 @@ public class ValidateMouseOperations extends Library {
 	public void ValidateDoubleClickOperation() {
 		System.out.println("inisde ValidateDoubleClickOperation");
 		driver.navigate().to(objProperties.getProperty("mouseOpeartionDoubleClick"));
-		PageLoadTimeOut();
+		//over loading 
+		PageLoadTimeOut(45);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		//js.executeScript("window.scrollBy(0,500)");//to scroll vertically down by 500 pixels
 		//js.executeScript("window.scrollBy(0,-500)");//to scroll vertically up by 500 pixels
@@ -74,6 +76,11 @@ public class ValidateMouseOperations extends Library {
 		//ObjActions.dragAndDrop(objMoueOperations.draggable, objMoueOperations.droppable).build().perform();
 		ObjActions.clickAndHold(objMoueOperations.draggable);
 		ObjActions.moveToElement(objMoueOperations.droppable).build().perform();
+	}
+	
+	@Override
+	public void PageLoadTimeOut() {
+		driver.manage().timeouts().pageLoadTimeout(90, TimeUnit.SECONDS);
 	}
 
 	@BeforeMethod
