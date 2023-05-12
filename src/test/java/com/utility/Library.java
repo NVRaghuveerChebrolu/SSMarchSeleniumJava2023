@@ -46,13 +46,14 @@ public class Library {
 		switch(browerName.toLowerCase()) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
-			ChromeOptions options = new ChromeOptions();
-			File objFile = new File (System.getProperty("user.dir")+"//src//test//resources//addBlocker//extension_5_6_0_0.crx");
-			options.addExtensions(objFile);
-			DesiredCapabilities capabilities = new DesiredCapabilities();
-			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-			options.merge(capabilities);
-			driver = new ChromeDriver(options);
+			//ChromeOptions options = new ChromeOptions();
+			//File objFile = new File (System.getProperty("user.dir")+"//src//test//resources//addBlocker//extension_5_6_0_0.crx");
+			//options.addExtensions(objFile);
+			//DesiredCapabilities capabilities = new DesiredCapabilities();
+			//capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+			//options.merge(capabilities);
+			//driver = new ChromeDriver(options);
+			driver = new ChromeDriver();
 			break;
 		case "edge":
 			WebDriverManager.edgedriver().setup();;
