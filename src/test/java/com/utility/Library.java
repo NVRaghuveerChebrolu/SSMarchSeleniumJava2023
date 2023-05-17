@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,6 +30,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class Library {
 	protected WebDriver driver;
 	public Properties objProperties;
+	public HashMap<String,String> hmap = new HashMap<String,String>();
 	
 	public void ReadPropertiesFile() throws IOException {
 		System.out.println(System.getProperty("user.dir"));
@@ -117,5 +121,35 @@ public class Library {
 	public void WaitUnitilElementIsClickable(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+	
+	
+	public HashMap<String, String> ReadExcelFile(int row, XSSFSheet objXSSFSheet) {
+		DataFormatter objDataFormatter = new DataFormatter();
+		hmap.put("RunMode", objXSSFSheet.getRow(row).getCell(0).getStringCellValue());
+		hmap.put("TestCaseName", objXSSFSheet.getRow(row).getCell(1).getStringCellValue());
+		hmap.put("FirstName", objXSSFSheet.getRow(row).getCell(2).getStringCellValue());
+		hmap.put("LastName", objXSSFSheet.getRow(row).getCell(3).getStringCellValue());
+		hmap.put("Address", objXSSFSheet.getRow(row).getCell(4).getStringCellValue());
+		hmap.put("Emailaddress", objXSSFSheet.getRow(row).getCell(5).getStringCellValue());
+		
+		hmap.put("PhoneNumber", objDataFormatter.formatCellValue( objXSSFSheet.getRow(row).getCell(6)));
+		
+		hmap.put("Gender", objXSSFSheet.getRow(row).getCell(7).getStringCellValue());
+		hmap.put("Hobbies", objXSSFSheet.getRow(row).getCell(8).getStringCellValue());
+		hmap.put("Languages", objXSSFSheet.getRow(row).getCell(9).getStringCellValue());
+		hmap.put("Skills", objXSSFSheet.getRow(row).getCell(10).getStringCellValue());
+		hmap.put("Country", objXSSFSheet.getRow(row).getCell(11).getStringCellValue());
+		hmap.put("SelectCountry", objXSSFSheet.getRow(row).getCell(12).getStringCellValue());
+		
+		hmap.put("DOB_YY", objDataFormatter.formatCellValue( objXSSFSheet.getRow(row).getCell(13)));
+		
+		hmap.put("DOB_MM", objXSSFSheet.getRow(row).getCell(14).getStringCellValue());
+		
+		hmap.put("DOB_DD", objDataFormatter.formatCellValue( objXSSFSheet.getRow(row).getCell(15)));
+		
+		hmap.put("Password", objXSSFSheet.getRow(row).getCell(16).getStringCellValue());
+		hmap.put("confirmPassword", objXSSFSheet.getRow(row).getCell(17).getStringCellValue());												
+		return hmap;
 	}
 }
