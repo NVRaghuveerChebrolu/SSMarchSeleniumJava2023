@@ -2,6 +2,7 @@ package com.Selenium;
 
 import org.testng.annotations.Test;
 
+import com.pages.AutomationRegisterPage;
 import com.pages.MouseOperationsPOM;
 import com.pages.MultipleWindowsPage;
 import com.pages.WebTablePage;
@@ -76,6 +77,41 @@ public class ValidateDataDrivenFromExelFile extends Library {
 				for (Map.Entry<String, String> map : hmap.entrySet()) {
 					System.out.println(map.getKey() + ":" + map.getValue());
 				}
+				
+				AutomationRegisterPage objARP = new AutomationRegisterPage(driver);
+				objARP.FirstName.clear();
+				objARP.FirstName.sendKeys(hmap.get("FirstName"));
+				
+				objARP.LastName.clear();
+				objARP.LastName.sendKeys(hmap.get("LastName"));
+				
+				objARP.Address.clear();
+				objARP.Address.sendKeys(hmap.get("Address"));
+				
+				objARP.Email.clear();
+				objARP.Email.sendKeys(hmap.get("Emailaddress"));
+				
+				objARP.Phone.clear();
+				objARP.Phone.sendKeys(hmap.get("PhoneNumber"));
+				
+				if(hmap.get("Gender").equals("Male")) {
+					objARP.MaleRadioButton.click();
+				}else {
+					objARP.FeMaleRadioButton.click();
+				}
+				
+				if(hmap.get("Hobbies").equalsIgnoreCase("Cricket")) {
+					objARP.Cricket.click();
+				}else if(hmap.get("Hobbies").equals("Movies")) {
+					objARP.Movies.click();
+				}else {
+					objARP.Hockey.click();
+				}
+				
+				objARP.Languages.click();
+				
+				SelectDesiredValueFromDropDown(objARP.AllLanguages,hmap.get("Languages"));
+				
 			}
 
 		} catch (Exception e) {
@@ -83,6 +119,7 @@ public class ValidateDataDrivenFromExelFile extends Library {
 			e.printStackTrace();
 		}
 	}
+
 
 	@BeforeMethod
 	public void beforeMethod() {

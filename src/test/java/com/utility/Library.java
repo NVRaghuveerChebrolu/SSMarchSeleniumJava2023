@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -151,5 +152,17 @@ public class Library {
 		hmap.put("Password", objXSSFSheet.getRow(row).getCell(16).getStringCellValue());
 		hmap.put("confirmPassword", objXSSFSheet.getRow(row).getCell(17).getStringCellValue());												
 		return hmap;
+	}
+	
+	public void SelectDesiredValueFromDropDown(List<WebElement> AllDropDownValues, String DropDownValueFromExcel) {
+		int NumberOfDropDownValues = AllDropDownValues.size();
+		for(int i=0;i<NumberOfDropDownValues;i++) {
+			String IndividualDropDownValue = AllDropDownValues.get(i).getText();
+			if(IndividualDropDownValue.equalsIgnoreCase(DropDownValueFromExcel)) {
+				AllDropDownValues.get(i).click();
+				break;
+			}
+		}
+		
 	}
 }
