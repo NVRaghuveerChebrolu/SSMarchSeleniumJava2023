@@ -108,10 +108,39 @@ public class ValidateDataDrivenFromExelFile extends Library {
 					objARP.Hockey.click();
 				}
 				
+				
+				scrollIntoWebElement(objARP.Languages);
+				
+				if(row>1) {
+					objARP.LanguagesCloseIcon.click();
+					}
+				
 				objARP.Languages.click();
 				
-				SelectDesiredValueFromDropDown(objARP.AllLanguages,hmap.get("Languages"));
+				List<WebElement> AllLanguages =  objARP.AllLanguages;
+				SelectDesiredValueFromDropDown(AllLanguages,hmap.get("Languages"));
 				
+				objARP.SkillsField.click();
+				
+				objARP.Skills.click();
+				SelectDesiredValueFromDropDown(objARP.AllSkills,hmap.get("Skills"));
+				
+				objARP.SelectCountry.click();
+				SelectDesiredValueFromDropDown(objARP.AllCountries,hmap.get("SelectCountry"));
+				
+				objARP.Year.click();
+				SelectDesiredValueFromDropDown(objARP.AllYears, hmap.get("DOB_YY"));
+				
+				objARP.Month.click();
+				SelectDesiredValueFromDropDown(objARP.AllMonths, hmap.get("DOB_MM"));
+				
+				objARP.Day.click();
+				SelectDesiredValueFromDropDown(objARP.AllDays, hmap.get("DOB_DD"));
+				
+				objARP.Password.clear();
+				objARP.Password.sendKeys(hmap.get("Password"));
+				objARP.ConfirmPwd.clear();
+				objARP.ConfirmPwd.sendKeys(hmap.get("confirmPassword"));
 			}
 
 		} catch (Exception e) {

@@ -52,11 +52,49 @@ public class AutomationRegisterPage {
 	@FindBy(xpath="//div[@id='msdd']/following-sibling::div/ul/li/a")
 	public List<WebElement> AllLanguages;
 	
+	@FindBy(xpath="//label[contains(text(),'Skills')]")
+	public WebElement SkillsField;
+	
+	@FindBy(xpath="//span[@class='ui-icon ui-icon-close']")
+	public WebElement LanguagesCloseIcon;
+	
+	@FindBy(id="Skills")
+	public WebElement Skills;
+	
+	@FindBy(xpath="//select[@id='Skills']/option")
+	public List<WebElement> AllSkills;
+	
+	@FindBy(xpath="//select[@id='yearbox']")
+	public WebElement Year;
+	
+	@FindBy(xpath="//select[@id='yearbox']/option")
+	public List<WebElement> AllYears;
+	
+	@FindBy(xpath="//select[@placeholder='Month']")
+	public WebElement Month;
+	
+	@FindBy(xpath="//select[@placeholder='Month']/option")
+	public List<WebElement> AllMonths;
+	
+	@FindBy(xpath="//span[@role='combobox']")
+	public WebElement SelectCountry;
+	
+	@FindBy(xpath="//ul[@id='select2-country-results']/li")
+	public List<WebElement> AllCountries;
+	
+	@FindBy(xpath="//select[@id='daybox']")
+	public WebElement Day;
+	
+	@FindBy(xpath="//select[@id='daybox']/option")
+	public List<WebElement> AllDays;
+	
+	@FindBy(id="firstpassword")
+	public WebElement Password;
+	
+	@FindBy(id="secondpassword")
+	public WebElement ConfirmPwd;
 	
 	
-	
-	
-
 	
 	
 
