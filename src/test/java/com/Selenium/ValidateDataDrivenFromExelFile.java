@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeClass;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -72,83 +73,92 @@ public class ValidateDataDrivenFromExelFile extends Library {
 			System.out.println("number of Rows:" + NumberOfRows);
 			for (int row = 1; row <= NumberOfRows; row++) {
 				hmap = ReadExcelFile(row, objXSSFSheet);
-				
+
 				System.out.println("---------------------------------------");
 				for (Map.Entry<String, String> map : hmap.entrySet()) {
 					System.out.println(map.getKey() + ":" + map.getValue());
 				}
-				
-				AutomationRegisterPage objARP = new AutomationRegisterPage(driver);
-				objARP.FirstName.clear();
-				objARP.FirstName.sendKeys(hmap.get("FirstName"));
-				
-				objARP.LastName.clear();
-				objARP.LastName.sendKeys(hmap.get("LastName"));
-				
-				objARP.Address.clear();
-				objARP.Address.sendKeys(hmap.get("Address"));
-				
-				objARP.Email.clear();
-				objARP.Email.sendKeys(hmap.get("Emailaddress"));
-				
-				objARP.Phone.clear();
-				objARP.Phone.sendKeys(hmap.get("PhoneNumber"));
-				
-				if(hmap.get("Gender").equals("Male")) {
-					objARP.MaleRadioButton.click();
-				}else {
-					objARP.FeMaleRadioButton.click();
-				}
-				
-				if(hmap.get("Hobbies").equalsIgnoreCase("Cricket")) {
-					objARP.Cricket.click();
-				}else if(hmap.get("Hobbies").equals("Movies")) {
-					objARP.Movies.click();
-				}else {
-					objARP.Hockey.click();
-				}
-				
-				
-				scrollIntoWebElement(objARP.Languages);
-				
-				if(row>1) {
-					objARP.LanguagesCloseIcon.click();
-					}
-				
-				objARP.Languages.click();
-				
-				List<WebElement> AllLanguages =  objARP.AllLanguages;
-				SelectDesiredValueFromDropDown(AllLanguages,hmap.get("Languages"));
-				
-				objARP.SkillsField.click();
-				
-				objARP.Skills.click();
-				SelectDesiredValueFromDropDown(objARP.AllSkills,hmap.get("Skills"));
-				
-				objARP.SelectCountry.click();
-				SelectDesiredValueFromDropDown(objARP.AllCountries,hmap.get("SelectCountry"));
-				
-				objARP.Year.click();
-				SelectDesiredValueFromDropDown(objARP.AllYears, hmap.get("DOB_YY"));
-				
-				objARP.Month.click();
-				SelectDesiredValueFromDropDown(objARP.AllMonths, hmap.get("DOB_MM"));
-				
-				objARP.Day.click();
-				SelectDesiredValueFromDropDown(objARP.AllDays, hmap.get("DOB_DD"));
-				
-				objARP.Password.clear();
-				objARP.Password.sendKeys(hmap.get("Password"));
-				objARP.ConfirmPwd.clear();
-				objARP.ConfirmPwd.sendKeys(hmap.get("confirmPassword"));
-			}
+				if (hmap.get("RunMode").equalsIgnoreCase("Yes")) {
 
+					AutomationRegisterPage objARP = new AutomationRegisterPage(driver);
+					objARP.FirstName.clear();
+					objARP.FirstName.sendKeys(hmap.get("FirstName"));
+
+					objARP.LastName.clear();
+					objARP.LastName.sendKeys(hmap.get("LastName"));
+
+					objARP.Address.clear();
+					objARP.Address.sendKeys(hmap.get("Address"));
+
+					objARP.Email.clear();
+					objARP.Email.sendKeys(hmap.get("Emailaddress"));
+
+					objARP.Phone.clear();
+					objARP.Phone.sendKeys(hmap.get("PhoneNumber"));
+
+					if (hmap.get("Gender").equals("Male")) {
+						objARP.MaleRadioButton.click();
+					} else {
+						objARP.FeMaleRadioButton.click();
+					}
+
+					if (hmap.get("Hobbies").equalsIgnoreCase("Cricket")) {
+						objARP.Cricket.click();
+					} else if (hmap.get("Hobbies").equals("Movies")) {
+						objARP.Movies.click();
+					} else {
+						objARP.Hockey.click();
+					}
+
+					scrollIntoWebElement(objARP.Languages);
+
+					if (row > 1) {
+						objARP.LanguagesCloseIcon.click();
+					}
+
+					objARP.Languages.click();
+
+					List<WebElement> AllLanguages = objARP.AllLanguages;
+					SelectDesiredValueFromDropDown(AllLanguages, hmap.get("Languages"));
+
+					objARP.SkillsField.click();
+
+					objARP.Skills.click();
+					SelectDesiredValueFromDropDown(objARP.AllSkills, hmap.get("Skills"));
+
+					objARP.SelectCountry.click();
+					SelectDesiredValueFromDropDown(objARP.AllCountries, hmap.get("SelectCountry"));
+
+					objARP.Year.click();
+					SelectDesiredValueFromDropDown(objARP.AllYears, hmap.get("DOB_YY"));
+
+					objARP.Month.click();
+					SelectDesiredValueFromDropDown(objARP.AllMonths, hmap.get("DOB_MM"));
+
+					objARP.Day.click();
+					SelectDesiredValueFromDropDown(objARP.AllDays, hmap.get("DOB_DD"));
+
+					objARP.Password.clear();
+					objARP.Password.sendKeys(hmap.get("Password"));
+					objARP.ConfirmPwd.clear();
+					objARP.ConfirmPwd.sendKeys(hmap.get("confirmPassword"));
+
+					FileOutputStream objFileOutPut = new FileOutputStream(objFile);
+					WriteToExcelFile(row, objXSSFSheet);
+					objXSSFWorkBook.write(objFileOutPut);
+
+				} else {
+					int row1 = row + 1;
+					System.out.println("Run Mode is not marked as Yes for row number:" + row1);
+				}
+			}
+			objXSSFWorkBook.close();
+			objFileInputStream.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 
 	@BeforeMethod
 	public void beforeMethod() {

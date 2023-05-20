@@ -154,6 +154,13 @@ public class Library {
 		return hmap;
 	}
 	
+
+	public void WriteToExcelFile(int row, XSSFSheet objXSSFSheet) {
+		
+		objXSSFSheet.getRow(row).createCell(18).setCellValue("Pass");
+		
+	}
+	
 	public void SelectDesiredValueFromDropDown(List<WebElement> AllDropDownValues, String DropDownValueFromExcel) {
 		int NumberOfDropDownValues = AllDropDownValues.size();
 		for(int i=0;i<NumberOfDropDownValues;i++) {

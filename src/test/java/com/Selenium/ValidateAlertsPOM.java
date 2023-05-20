@@ -1,6 +1,7 @@
 package com.Selenium;
 
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.pages.AlertsPage;
 import com.utility.Library;
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,7 +40,7 @@ public class ValidateAlertsPOM extends Library{
 
 	}
 	
-	@Test(priority=-1)
+	@Test(priority=-1,dependsOnMethods= {"ValidateAlertsPageLoadedSuccessfully"})
 	public void ValidateNormalALert() throws InterruptedException {
 		System.out.println("inside ValidateNormalALert");
 		//driver.findElement(By.id("alertButton")).click();
@@ -53,7 +55,7 @@ public class ValidateAlertsPOM extends Library{
 	}
 	
 	
-	@Test()
+	@Test(dependsOnMethods= {"ValidateAlertsPageLoadedSuccessfully"})
 	public void ValidateTimerAlert() throws InterruptedException {
 		System.out.println("inside ValidateTimerAlert");
 		//driver.findElement(By.id("timerAlertButton")).click();
@@ -73,7 +75,7 @@ public class ValidateAlertsPOM extends Library{
 		
 	}
 	
-	@Test(priority=1)
+	@Test(dependsOnMethods= {"ValidateAlertsPageLoadedSuccessfully"},priority=1)
 	public void ValidateConformBoxAlert() {
 		System.out.println("inside ValidateConformBoxAlert");
 		driver.findElement(By.id("confirmButton")).click();
@@ -87,19 +89,24 @@ public class ValidateAlertsPOM extends Library{
 		Assert.assertEquals(ConfirmBoxResult, "You selected Cancel");
 	}
 	
-	@Test(priority=2)
+	@Test(priority=2,dependsOnMethods= {"ValidateAlertsPageLoadedSuccessfully"})
 	public void ValidatePromptBoxAlert() {
 		System.out.println("inside ValidatePromptBoxAlert");
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,300)");
 		driver.findElement(By.id("promtButton")).click();
 		Alert PromptBoxAlert = driver.switchTo().alert();
 		String PromptBoxAlertText = PromptBoxAlert.getText();
 		System.out.println("PromptBoxAlertText:"+PromptBoxAlertText);
-		Assert.assertEquals(PromptBoxAlertText, "Please enter your name");
+		//Assert.assertEquals(PromptBoxAlertText, "Please enter your nam");
+		SoftAssert objSA = new SoftAssert();
+		objSA.assertEquals(PromptBoxAlertText, "Please enter your nam");
 		PromptBoxAlert.sendKeys("hi how are you?");
 		PromptBoxAlert.accept();
 		String PromptResult = driver.findElement(By.id("promptResult")).getText();
 		System.out.println("PromptResult:"+PromptResult);
 		Assert.assertEquals(PromptResult, "You entered hi how are you?");
+		objSA.assertAll();
 	}
 
 	@BeforeMethod
