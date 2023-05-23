@@ -75,9 +75,11 @@ public class ValidateAlertsPOM extends Library{
 		
 	}
 	
-	@Test(dependsOnMethods= {"ValidateAlertsPageLoadedSuccessfully"},priority=1)
+	@Test(dependsOnMethods= {"ValidateAlertsPageLoadedSuccessfully"},priority=1,invocationCount=4)
 	public void ValidateConformBoxAlert() {
 		System.out.println("inside ValidateConformBoxAlert");
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,300)");
 		driver.findElement(By.id("confirmButton")).click();
 		Alert ConfirmBoxAlert = driver.switchTo().alert();
 		String ConfirmBoxAlertText = ConfirmBoxAlert.getText();
