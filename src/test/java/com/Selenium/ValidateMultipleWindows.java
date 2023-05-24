@@ -28,7 +28,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
-public class ValidateMulpleWindows extends Library {
+public class ValidateMultipleWindows extends Library {
 	
 	@Test
 	public void ValidateNewBrowserWindow() {
