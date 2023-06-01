@@ -18,6 +18,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
@@ -29,6 +30,7 @@ public class ValidateMouseOperations extends Library {
 	@Test(priority = 0)
 	public void ValidateRightCickOperation() {
 		System.out.println("inside ValidateRightCickOperation");
+		ExtTest=ExtReports.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.get(objProperties.getProperty("mouseOpeartionRightClick"));
 		//overriding the PageLoadTimeOut
 		PageLoadTimeOut();
@@ -45,6 +47,7 @@ public class ValidateMouseOperations extends Library {
 	@Test(priority=1)
 	public void ValidateDoubleClickOperation() {
 		System.out.println("inisde ValidateDoubleClickOperation");
+		ExtTest=ExtReports.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(objProperties.getProperty("mouseOpeartionDoubleClick"));
 		//over loading 
 		PageLoadTimeOut(45);
@@ -67,6 +70,7 @@ public class ValidateMouseOperations extends Library {
 	@Test(priority=2)
 	public void ValidateDragAndDrop() {
 		System.out.println("inside ValidateDragAndDrop");
+		ExtTest=ExtReports.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.get(objProperties.getProperty("mouseOperationDragAndDrop"));
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,300)");//to scroll vertically down by 500 pixels
@@ -86,21 +90,30 @@ public class ValidateMouseOperations extends Library {
 	@BeforeMethod
 	public void beforeMethod() {
 		System.out.println("inside beforeMethod");
+		
 	}
 
 	@AfterMethod
-	public void afterMethod() {
+	public void afterMethod(ITestResult result) {
 		System.out.println("inside afterMethod");
+		try {
+			UpdatingResultInExtentReport(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@BeforeClass
 	public void beforeClass() {
 		System.out.println("inside beforeClass");
+		StartExtentReport();
 	}
 
 	@AfterClass
 	public void afterClass() {
 		System.out.println("inside afterClass");
+		FlushReport();
 	}
 
 	@BeforeTest
