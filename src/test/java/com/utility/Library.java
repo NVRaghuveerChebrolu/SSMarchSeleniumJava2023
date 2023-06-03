@@ -47,7 +47,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Library {
-	protected static WebDriver driver;
+	protected WebDriver driver;
 	public static Properties objProperties;
 	public HashMap<String,String> hmap = new HashMap<String,String>();
 	public static ExtentHtmlReporter ExtHtmlReptr;
@@ -80,7 +80,7 @@ public class Library {
 		
 	}
 	
-	public static String TakeScreenShot(String testcaseName) throws IOException {
+	public  String TakeScreenShot(String testcaseName) throws IOException {
 
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String dateName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
@@ -263,7 +263,7 @@ public class Library {
 		ExtReports.flush();
 	}
 	
-	public static WebDriver getBrowserCapabilities(String BrowserName) {
+	public  WebDriver getBrowserCapabilities(String BrowserName) {
 		DesiredCapabilities capabilities = null;
 		if (BrowserName == null || BrowserName.equalsIgnoreCase("FIREFOX")) {
 			capabilities = DesiredCapabilities.firefox();
