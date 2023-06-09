@@ -3,6 +3,7 @@ package com.Selenium;
 import org.testng.annotations.Test;
 
 import com.utility.Library;
+import com.utility.constants;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -43,7 +44,7 @@ public class TestGmoOnlineUsingTestNg extends Library{
 		String Title = driver.getTitle();
 		Assert.assertEquals(Title, "OnLine Catalog");
 		driver.findElement(By.name("QTY_GLASSES")).clear();
-		driver.findElement(By.name("QTY_GLASSES")).sendKeys("3");
+		driver.findElement(By.name("QTY_GLASSES")).sendKeys(constants.QTY_GLASSES);
 		driver.findElement(By.name("bSubmit")).click();
 		String TitleOfPlaceOrder = driver.getTitle();
 		Assert.assertEquals(TitleOfPlaceOrder, "Place Order");

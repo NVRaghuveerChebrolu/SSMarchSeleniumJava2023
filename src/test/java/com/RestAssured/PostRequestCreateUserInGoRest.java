@@ -25,10 +25,8 @@ import io.restassured.specification.RequestSpecification;
 
 public class PostRequestCreateUserInGoRest extends Library{
 	@Test()
-	public void PostRequest() throws FileNotFoundException {
-		
-		FileInputStream objFileInput = new FileInputStream(new String(System.getProperty("user.dir") + "//src//test//resources//PayloadsForRest//CreateUserInGoRest.txt"));
-		
+	public void PostRequest() throws FileNotFoundException {	
+	FileInputStream objFileInput = new FileInputStream(new String(System.getProperty("user.dir") + "//src//test//resources//PayloadsForRest//CreateUserInGoRest.txt"));
 	Response Res= RestAssured
 			.given()
 			.header("Content-type", "application/json")
@@ -37,7 +35,6 @@ public class PostRequestCreateUserInGoRest extends Library{
 			.when()
 			.auth().oauth2(objProperties.getProperty("TokenOfGoRestAPI"))
 			.post(objProperties.getProperty("PostRequestURI"));
-		
 	Assert.assertEquals(Res.getStatusCode(), Integer.parseInt(objProperties.getProperty("SuccessResponseCodeCreateUser")));
 	ResponseBody resBody = Res.getBody();
 	String ResponseFromPost_APIcall = resBody.asString();
@@ -48,7 +45,6 @@ public class PostRequestCreateUserInGoRest extends Library{
 	String Gender = jsnPath.get("gender");
 	System.out.println("Name:"+Name);
 	System.out.println("Gender:"+Gender);
-	
 	Assert.assertEquals(Name, objProperties.getProperty("PostRequestUserNameCreated"), "User not created Successfully with expected name");
 	}
 	
