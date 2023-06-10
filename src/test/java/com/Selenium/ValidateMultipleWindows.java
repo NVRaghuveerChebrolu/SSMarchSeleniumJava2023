@@ -58,7 +58,7 @@ public class ValidateMultipleWindows extends Library {
 				String TechTalkURL = driver.findElement(MultipleWindowsPage.TechTalkInNewBrowserWindow).getAttribute("href");
 				Assert.assertEquals(TechTalkURL, objProperties.getProperty("UrlOfTechTalkInNewBrowserWindow"));
 				driver.close(); // closes the currently window that is currently open (where driver is currently Active)
-				driver.quit();//quit will closes all the windows that are open and operating by webDriver.
+				//driver.quit();//quit will closes all the windows that are open and operating by webDriver.
 				//break;
 			}
 		}
