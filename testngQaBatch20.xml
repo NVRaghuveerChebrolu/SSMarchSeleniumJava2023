@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="com.Selenium.testNgDataProvider"/>
+      <class name="com.HeadLess.HeadLessFirefox_Browser"/>
+      <class name="com.RestAssured.GetRequestIndividualGoRest"/>
+      <class name="com.Selenium.ValidateMouseOperationsParallelMethods"/>
+      <class name="com.Selenium.ValidateMouseOperationsParallelMethodsSeleniumGrid"/>
+      <class name="com.Selenium.TestNgFactory"/>
+      <class name="com.Selenium.testNGParallelTestMethods"/>
+      <class name="com.Selenium.ValidateFileUpload"/>
+      <class name="com.Selenium.ValidateDataDrivenFromExelFile"/>
+      <class name="com.seleniumGrid.Test3Edge"/>
+      <class name="com.Selenium.ValidateFramesWithPOM"/>
+      <class name="com.RestAssured.PUTRequestUpdateUserInGoRest"/>
+      <class name="com.Selenium.TestNgLoadTesting"/>
+      <class name="com.HeadLess.HeadLessEdge_Browser"/>
+      <class name="com.Selenium.ValidateMouseOperations"/>
+      <class name="com.Selenium.ValidateFileDownload"/>
+      <class name="com.Selenium.TestNGParameters"/>
+      <class name="com.Selenium.ValidateLinks"/>
+      <class name="com.RestAssured.GetRequestUsersGoRestAPI"/>
+      <class name="com.seleniumGrid.Test2Firefox"/>
+      <class name="com.Selenium.TestngGroups"/>
+      <class name="com.Selenium.ValidateAlerts"/>
+      <class name="com.seleniumGrid.Test4InternetExplorer"/>
+      <class name="com.Selenium.TestGmoOnlineUsingTestNg"/>
+      <class name="com.HeadLess.HeadLessChrome_Browser"/>
+      <class name="com.Selenium.testNGParallelTestSuite"/>
+      <class name="com.seleniumGrid.Test1Chrome"/>
+      <class name="com.RestAssured.DeleteRequestIndividualGoRest"/>
+      <class name="com.Selenium.TestNgParallelClass3"/>
+      <class name="com.Selenium.ValidateFrames"/>
+      <class name="com.HeadLess.HeadLessHtmlUnitDriver"/>
+      <class name="com.Selenium.TestNgAnnotations"/>
+      <class name="com.Selenium.TestNgParallelClass2"/>
+      <class name="com.Selenium.TestNgParallelClass1"/>
+      <class name="com.Selenium.ValidateCalenderAndDropDowns"/>
+      <class name="com.RestAssured.PostRequestCreateUserInGoRest"/>
+      <class name="com.Selenium.ValidateMultipleWindows"/>
+      <class name="com.Selenium.ValidateAlertsPOM"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

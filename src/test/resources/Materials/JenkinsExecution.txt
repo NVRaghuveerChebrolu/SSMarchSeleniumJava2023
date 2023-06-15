@@ -1,0 +1,39 @@
+Jenkins Execution :
+Step1 : Visit https://www.jenkins.io/download/ and download jenkins
+Step2 : Visit https://updates.jenkins.io/download/war/ and download war file
+Step3 : Open git bash and navigate into the folder where jenkins.war file is available and provide below command.
+		java -jar jenkins.war --enable-future-java --httpPort=8080
+		
+		Below are the settings that need to changed in pom.xml file
+Step4 : open pom.xml file -> click on dependencies tab -> select testng -> click on properties -> change the scope from "test" to "compile"
+Step5 : make sure pom.xml file contains maven surefire plugin and maven compiler plugin .
+	Below is an example :
+	
+	
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+
