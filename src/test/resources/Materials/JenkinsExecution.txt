@@ -9,7 +9,7 @@ Step4 : open pom.xml file -> click on dependencies tab -> select testng -> click
 Step5 : make sure pom.xml file contains maven surefire plugin and maven compiler plugin .
 	Below is an example :
 	
-	
+	------------------------------
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -35,5 +35,11 @@ Step5 : make sure pom.xml file contains maven surefire plugin and maven compiler
 			</plugin>
 		</plugins>
 	</build>
+	-----------------------------
+	
+Build Triggers in Jenkins :
+
+https://blog.knoldus.com/jenkins-build-triggers/
+https://stackoverflow.com/questions/12472645/how-do-i-schedule-jobs-in-jenkins
 	
 
