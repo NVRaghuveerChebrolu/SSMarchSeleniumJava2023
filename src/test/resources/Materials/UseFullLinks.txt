@@ -10,4 +10,14 @@ https://www.jenkins.io/download/
 https://updates.jenkins.io/download/war/
 java -jar jenkins.war --enable-future-java --httpPort=8080
 https://www.toolsqa.com/selenium-webdriver/selenium-headless-browser-testing/
+https://dev.mysql.com/downloads/installer/
+
+use below to install mysql
+https://www.youtube.com/watch?v=bcrAdegPdAI&ab_channel=AbhishekChaudhary\
+https://www.youtube.com/watch?v=ftEGdHTSVbw&ab_channel=EducationAnalysist
+
+mysql>
+CREATE USER 'user123'@'localhost' IDENTIFIED BY 'password123';
+GRANT ALL PRIVILEGES ON * . * TO 'user123'@'localhost';
+FLUSH PRIVILEGES;
 
