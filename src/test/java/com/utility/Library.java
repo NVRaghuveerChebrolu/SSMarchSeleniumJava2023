@@ -71,8 +71,8 @@ public class Library {
 			FileInputStream objFileinput = new FileInputStream(objFile);
 			objProperties = new Properties();
 			objProperties.load(objFileinput);
-			System.out.println(objProperties.getProperty("browser"));
-			
+			System.out.println("broswer:"+objProperties.getProperty("browser"));
+			System.out.println("Updated checkfrom github.dev to raise a PR");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
